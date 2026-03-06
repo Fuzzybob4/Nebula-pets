@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
@@ -25,6 +24,44 @@ interface ProductDetailProps {
   product: Product;
 }
 
+// Accurate emoji representations
+const getProductEmoji = (product: Product): string => {
+  const name = product.name.toLowerCase();
+  
+  if (name.includes('neon tetra')) return '🐠';
+  if (name.includes('betta')) return '🐟';
+  if (name.includes('discus')) return '🐠';
+  if (name.includes('ram')) return '🐠';
+  if (name.includes('clownfish')) return '🐠';
+  if (name.includes('mandarin')) return '🐠';
+  if (name.includes('tang')) return '🐠';
+  if (name.includes('dart frog')) return '🐸';
+  if (name.includes('toad')) return '🐸';
+  if (name.includes('tree frog')) return '🐸';
+  if (name.includes('pacman frog')) return '🐸';
+  if (name.includes("white's")) return '🐸';
+  if (name.includes('axolotl')) return '🦎';
+  if (name.includes('salamander')) return '🦎';
+  if (name.includes('newt')) return '🦎';
+  if (product.category === 'supplies') return '🛠️';
+  
+  return '📦';
+};
+
+// Get gradient color based on category
+const getCategoryGradient = (category: string): string => {
+  switch (category) {
+    case 'fish':
+      return 'from-blue-500/20 to-cyan-500/20';
+    case 'amphibians':
+      return 'from-green-500/20 to-emerald-500/20';
+    case 'supplies':
+      return 'from-purple-500/20 to-pink-500/20';
+    default:
+      return 'from-gray-500/20 to-slate-500/20';
+  }
+};
+
 export function ProductDetail({ product }: ProductDetailProps) {
   const { addItem } = useCart();
 
@@ -37,6 +74,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
       image: product.image,
     });
   };
+
+  const emoji = getProductEmoji(product);
+  const gradient = getCategoryGradient(product.category);
 
   return (
     <div>
@@ -55,21 +95,17 @@ export function ProductDetail({ product }: ProductDetailProps) {
           animate={{ opacity: 1, x: 0 }}
           className="relative"
         >
-          <div className="aspect-square rounded-2xl glass-card overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-cyan-500/10" />
+          <div className={`aspect-square rounded-2xl glass-card overflow-hidden relative bg-gradient-to-br ${gradient} flex items-center justify-center`}>
             
-            {/* Placeholder Visual */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                  <span className="text-6xl">
-                    {product.category === "fish" ? "🐠" : 
-                     product.category === "amphibians" ? "🦎" : "🪴"}
-                  </span>
-                </div>
-                <p className="text-muted-foreground text-sm">{product.name}</p>
-              </div>
-            </div>
+            {/* Large Emoji */}
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              className="text-9xl select-none"
+              style={{ filter: 'drop-shadow(0 0 30px rgba(255,255,255,0.3))' }}
+            >
+              {emoji}
+            </motion.div>
 
             {/* Badges */}
             <div className="absolute top-4 left-4 flex gap-2">

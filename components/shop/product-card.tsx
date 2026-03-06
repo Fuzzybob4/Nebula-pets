@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShoppingCart, Star, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,55 @@ import { useCart } from "@/hooks/use-cart";
 interface ProductCardProps {
   product: Product;
 }
+
+// Accurate emoji representations for each product type
+const getProductEmoji = (product: Product): string => {
+  const name = product.name.toLowerCase();
+  
+  // Freshwater fish
+  if (name.includes('neon tetra')) return '🐠';
+  if (name.includes('betta')) return '🐟';
+  if (name.includes('discus')) return '🐠';
+  if (name.includes('ram')) return '🐠';
+  
+  // Saltwater fish
+  if (name.includes('clownfish')) return '🐠';
+  if (name.includes('mandarin')) return '🐠';
+  if (name.includes('tang')) return '🐠';
+  
+  // Frogs
+  if (name.includes('dart frog')) return '🐸';
+  if (name.includes('toad')) return '🐸';
+  if (name.includes('tree frog')) return '🐸';
+  if (name.includes('pacman frog')) return '🐸';
+  if (name.includes("white's")) return '🐸';
+  
+  // Salamanders
+  if (name.includes('axolotl')) return '🦎';
+  if (name.includes('salamander')) return '🦎';
+  
+  // Newts
+  if (name.includes('newt')) return '🦎';
+  
+  // Supplies
+  if (product.category === 'supplies') return '🛠️';
+  
+  return '📦';
+};
+
+// Get gradient color based on category
+const getCategoryGradient = (category: string): string => {
+  switch (category) {
+    case 'fish':
+      return 'from-blue-500/20 to-cyan-500/20';
+    case 'amphibians':
+      return 'from-green-500/20 to-emerald-500/20';
+    case 'supplies':
+      return 'from-purple-500/20 to-pink-500/20';
+    default:
+      return 'from-gray-500/20 to-slate-500/20';
+  }
+};
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
@@ -28,21 +76,8 @@ export function ProductCard({ product }: ProductCardProps) {
     });
   };
 
-  // Get emoji/icon based on category/subcategory
-  const getProductIcon = () => {
-    if (product.category === "fish") {
-      if (product.subcategory === "saltwater") return "🐠";
-      return "🐟";
-    }
-    if (product.category === "amphibians") {
-      if (product.subcategory === "frogs") return "🐸";
-      if (product.subcategory === "salamanders") return "🦎";
-      if (product.subcategory === "newts") return "🦎";
-      if (product.subcategory === "toads") return "🐸";
-    }
-    if (product.category === "supplies") return "🪴";
-    return "📦";
-  };
+  const emoji = getProductEmoji(product);
+  const gradient = getCategoryGradient(product.category);
 
   return (
     <Link href={`/shop/product/${product.id}`}>
@@ -50,25 +85,17 @@ export function ProductCard({ product }: ProductCardProps) {
         whileHover={{ y: -4 }}
         className="glass-card overflow-hidden group h-full flex flex-col"
       >
-        {/* Image Container */}
-        <div className="relative aspect-square bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden">
-          {/* Product Image or Icon */}
-          {product.image ? (
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-500/10">
-              <span className="text-6xl">{getProductIcon()}</span>
-            </div>
-          )}
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {/* Image/Emoji Container */}
+        <div className={`relative aspect-square bg-gradient-to-br ${gradient} overflow-hidden flex items-center justify-center`}>
+          {/* Large Emoji */}
+          <motion.div
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            className="text-8xl select-none"
+            style={{ filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.2))' }}
+          >
+            {emoji}
+          </motion.div>
           
           {/* Category Badge */}
           <Badge 

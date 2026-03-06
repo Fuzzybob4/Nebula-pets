@@ -6,7 +6,7 @@ export interface Product {
   price: number;
   category: "fish" | "amphibians" | "supplies";
   subcategory: string;
-  image: string;
+  image?: string;
   inStock: boolean;
   rating: number;
   reviewCount: number;
@@ -16,6 +16,9 @@ export interface Product {
   temperature?: string;
   temperament?: "peaceful" | "semi-aggressive" | "aggressive";
 }
+
+// Product images - using accurate representations only
+// TODO: Replace with client-provided product photos
 
 export const products: Product[] = [
   // FISH - Freshwater
@@ -27,7 +30,6 @@ export const products: Product[] = [
     price: 3.99,
     category: "fish",
     subcategory: "freshwater",
-    image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.8,
     reviewCount: 124,
@@ -45,7 +47,6 @@ export const products: Product[] = [
     price: 15.99,
     category: "fish",
     subcategory: "freshwater",
-    image: "https://images.unsplash.com/photo-1534531173927-aeb928d54385?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.9,
     reviewCount: 256,
@@ -63,7 +64,6 @@ export const products: Product[] = [
     price: 89.99,
     category: "fish",
     subcategory: "freshwater",
-    image: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.7,
     reviewCount: 48,
@@ -81,7 +81,6 @@ export const products: Product[] = [
     price: 12.99,
     category: "fish",
     subcategory: "freshwater",
-    image: "https://images.unsplash.com/photo-1544552866-d3ed42536cfd?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.6,
     reviewCount: 89,
@@ -101,7 +100,6 @@ export const products: Product[] = [
     price: 24.99,
     category: "fish",
     subcategory: "saltwater",
-    image: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.9,
     reviewCount: 312,
@@ -119,7 +117,6 @@ export const products: Product[] = [
     price: 69.99,
     category: "fish",
     subcategory: "saltwater",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.5,
     reviewCount: 67,
@@ -137,7 +134,6 @@ export const products: Product[] = [
     price: 79.99,
     category: "fish",
     subcategory: "saltwater",
-    image: "https://images.unsplash.com/photo-1689028293838-a6a66b0ad3a1?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.7,
     reviewCount: 143,
@@ -157,7 +153,6 @@ export const products: Product[] = [
     price: 59.99,
     category: "amphibians",
     subcategory: "frogs",
-    image: "https://images.unsplash.com/photo-1550948537-130a1ce83314?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.8,
     reviewCount: 92,
@@ -172,7 +167,6 @@ export const products: Product[] = [
     price: 14.99,
     category: "amphibians",
     subcategory: "toads",
-    image: "https://images.unsplash.com/photo-1504450874802-0ed58ffa9f4d?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.7,
     reviewCount: 156,
@@ -187,7 +181,6 @@ export const products: Product[] = [
     price: 24.99,
     category: "amphibians",
     subcategory: "frogs",
-    image: "https://images.unsplash.com/photo-1504450874802-0ed58ffa9f4d?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.9,
     reviewCount: 203,
@@ -202,7 +195,6 @@ export const products: Product[] = [
     price: 29.99,
     category: "amphibians",
     subcategory: "frogs",
-    image: "https://images.unsplash.com/photo-1504450874802-0ed58ffa9f4d?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.6,
     reviewCount: 67,
@@ -217,7 +209,6 @@ export const products: Product[] = [
     price: 44.99,
     category: "amphibians",
     subcategory: "frogs",
-    image: "https://images.unsplash.com/photo-1504450874802-0ed58ffa9f4d?w=600&auto=format&fit=crop",
     inStock: false,
     rating: 4.8,
     reviewCount: 112,
@@ -234,7 +225,6 @@ export const products: Product[] = [
     price: 39.99,
     category: "amphibians",
     subcategory: "salamanders",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.9,
     reviewCount: 234,
@@ -249,7 +239,6 @@ export const products: Product[] = [
     price: 34.99,
     category: "amphibians",
     subcategory: "salamanders",
-    image: "https://images.unsplash.com/photo-1504450874802-0ed58ffa9f4d?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.7,
     reviewCount: 89,
@@ -266,7 +255,6 @@ export const products: Product[] = [
     price: 12.99,
     category: "amphibians",
     subcategory: "newts",
-    image: "https://images.unsplash.com/photo-1504450874802-0ed58ffa9f4d?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.6,
     reviewCount: 78,
@@ -282,7 +270,6 @@ export const products: Product[] = [
     price: 59.99,
     category: "supplies",
     subcategory: "tanks",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.9,
     reviewCount: 89,
@@ -295,7 +282,6 @@ export const products: Product[] = [
     price: 299.99,
     category: "supplies",
     subcategory: "filtration",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.8,
     reviewCount: 156,
@@ -308,7 +294,6 @@ export const products: Product[] = [
     price: 449.99,
     category: "supplies",
     subcategory: "lighting",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.9,
     reviewCount: 78,
@@ -321,7 +306,6 @@ export const products: Product[] = [
     price: 34.99,
     category: "supplies",
     subcategory: "substrate",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.7,
     reviewCount: 203,
@@ -334,7 +318,6 @@ export const products: Product[] = [
     price: 12.99,
     category: "supplies",
     subcategory: "food",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.8,
     reviewCount: 445,
@@ -347,7 +330,6 @@ export const products: Product[] = [
     price: 89.99,
     category: "supplies",
     subcategory: "enclosures",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop",
     inStock: true,
     rating: 4.8,
     reviewCount: 312,
