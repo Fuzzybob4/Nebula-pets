@@ -284,9 +284,9 @@ export default function CostDashboardPage() {
                         {call.service}
                       </Badge>
                       <span className="text-muted-foreground">{call.endpoint}</span>
-                      {call.metadata?.model && (
+                      {call.metadata?.model ? (
                         <span className="text-xs text-blue-400">{String(call.metadata.model)}</span>
-                      )}
+                      ) : null}
                     </div>
                     <div className="flex items-center gap-4">
                       {(call.tokensInput || call.tokensOutput) && (

@@ -9,7 +9,7 @@ export interface ApiCall {
   tokensInput?: number;
   tokensOutput?: number;
   costUsd: number;
-  metadata?: Record<string, unknown>;
+  metadata?: Record<string, string | number | boolean | undefined>;
 }
 
 export interface CostSummary {
