@@ -285,7 +285,7 @@ export default function CostDashboardPage() {
                       </Badge>
                       <span className="text-muted-foreground">{call.endpoint}</span>
                       {call.metadata?.model && (
-                        <span className="text-xs text-blue-400">{call.metadata.model}</span>
+                        <span className="text-xs text-blue-400">{String(call.metadata.model)}</span>
                       )}
                     </div>
                     <div className="flex items-center gap-4">
