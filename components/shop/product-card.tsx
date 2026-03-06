@@ -28,6 +28,22 @@ export function ProductCard({ product }: ProductCardProps) {
     });
   };
 
+  // Get emoji/icon based on category/subcategory
+  const getProductIcon = () => {
+    if (product.category === "fish") {
+      if (product.subcategory === "saltwater") return "🐠";
+      return "🐟";
+    }
+    if (product.category === "amphibians") {
+      if (product.subcategory === "frogs") return "🐸";
+      if (product.subcategory === "salamanders") return "🦎";
+      if (product.subcategory === "newts") return "🦎";
+      if (product.subcategory === "toads") return "🐸";
+    }
+    if (product.category === "supplies") return "🪴";
+    return "📦";
+  };
+
   return (
     <Link href={`/shop/product/${product.id}`}>
       <motion.div
@@ -36,8 +52,23 @@ export function ProductCard({ product }: ProductCardProps) {
       >
         {/* Image Container */}
         <div className="relative aspect-square bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden">
-          {/* Placeholder gradient since we don't have actual images */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+          {/* Product Image or Icon */}
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+              <span className="text-6xl">{getProductIcon()}</span>
+            </div>
+          )}
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           
           {/* Category Badge */}
           <Badge 
