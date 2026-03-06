@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Fish, Sparkles, Shield } from "lucide-react";
+import { ArrowRight, Sparkles, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shop/product-card";
 import { getFeaturedProducts } from "@/data/products";
@@ -23,10 +24,28 @@ export default function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <div className="relative w-32 h-32 mx-auto">
+                <Image
+                  src="/images/logo.webp"
+                  alt="Nebula Pets"
+                  fill
+                  className="object-contain rounded-2xl"
+                  priority
+                />
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                 <Sparkles className="h-4 w-4 text-blue-400" />
@@ -37,7 +56,7 @@ export default function HomePage() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="text-5xl md:text-7xl font-bold mb-6"
             >
               <span className="text-gradient">Nebula Pets</span>
@@ -46,7 +65,7 @@ export default function HomePage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
               className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
             >
               Your premier destination for exotic fish, amphibians, and aquatic wonders. 
@@ -56,7 +75,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link href="/shop">
@@ -67,7 +86,6 @@ export default function HomePage() {
               </Link>
               <Link href="/shop/fish">
                 <Button size="lg" variant="outline" className="gap-2 border-white/20">
-                  <Fish className="h-4 w-4" />
                   View Fish
                 </Button>
               </Link>

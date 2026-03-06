@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Fish, ShoppingCart, Menu, X, Zap } from "lucide-react";
+import { ShoppingCart, Menu, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/hooks/use-cart";
@@ -26,13 +27,14 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <Fish className="h-8 w-8 text-blue-400 group-hover:text-purple-400 transition-colors" />
-              <motion.div
-                className="absolute inset-0 bg-blue-400/20 rounded-full blur-xl"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-10 w-10">
+              <Image
+                src="/images/logo.webp"
+                alt="Nebula Pets"
+                fill
+                className="object-contain rounded-lg"
+                priority
               />
             </div>
             <span className="text-xl font-bold text-gradient">Nebula Pets</span>
