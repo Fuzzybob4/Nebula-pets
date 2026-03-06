@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Shield } from "lucide-react";
+import { ArrowRight, Sparkles, Shield, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shop/product-card";
 import { getFeaturedProducts } from "@/data/products";
@@ -110,7 +110,7 @@ export default function HomePage() {
                 description: "Detailed species-specific care instructions with every order.",
               },
               {
-                icon: Fish,
+                icon: Heart,
                 title: "Ethically Sourced",
                 description: "Partnered with responsible breeders and sustainable suppliers.",
               },
